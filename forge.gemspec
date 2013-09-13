@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "forge"
-  s.version = "0.3.0"
+  s.version = "0.5.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andy Adams", "Drew Strojny", "Matt Button"]
-  s.date = "2011-12-09"
+  s.date = "2012-10-02"
   s.description = "A toolkit for bootstrapping and developing WordPress themes."
   s.email = "aadams@jestro.com"
   s.executables = ["forge"]
@@ -33,10 +33,10 @@ Gem::Specification.new do |s|
     "features/support/env.rb",
     "forge.gemspec",
     "layouts/config/config.tt",
-    "layouts/config/stylesheet_header.erb",
     "layouts/default/functions/functions.php.erb",
     "layouts/default/javascripts/admin.js",
     "layouts/default/javascripts/theme.js",
+    "layouts/default/stylesheets/_header.scss.erb",
     "layouts/default/stylesheets/_reset.scss",
     "layouts/default/stylesheets/_typography.scss",
     "layouts/default/stylesheets/style.css.scss.erb",
@@ -73,73 +73,70 @@ Gem::Specification.new do |s|
   s.homepage = "http://forge.thethemefoundry.com"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.11"
+  s.rubygems_version = "1.8.10"
   s.summary = "A tool for developing wordpress themes"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<thor>, ["~> 0.14.6"])
-      s.add_runtime_dependency(%q<guard>, ["~> 0.8.4"])
+      s.add_runtime_dependency(%q<thor>, ["~> 0.15.4"])
+      s.add_runtime_dependency(%q<guard>, ["~> 1.3.0"])
       s.add_runtime_dependency(%q<sprockets>, ["~> 2.0.2"])
       s.add_runtime_dependency(%q<rubyzip>, ["~> 0.9.4"])
-      s.add_runtime_dependency(%q<json>, ["~> 1.6.1"])
-      s.add_runtime_dependency(%q<sass>, ["~> 3.1.8"])
+      s.add_runtime_dependency(%q<json>, ["~> 1.8.0"])
+      s.add_runtime_dependency(%q<sass>, ["~> 3.2.0"])
       s.add_runtime_dependency(%q<sprockets-sass>, ["~> 0.3.0"])
-      s.add_runtime_dependency(%q<compass>, ["~> 0.11.5"])
+      s.add_runtime_dependency(%q<compass>, ["~> 0.12.2"])
       s.add_runtime_dependency(%q<rack>, ["~> 1.3.5"])
-      s.add_runtime_dependency(%q<guard-livereload>, ["~> 0.3.1"])
-      s.add_runtime_dependency(%q<less>, ["~> 2.0.7"])
-      s.add_runtime_dependency(%q<rb-fsevent>, ["~> 0.9.0"])
+      s.add_runtime_dependency(%q<guard-livereload>, ["~> 1.0.3"])
+      s.add_runtime_dependency(%q<less>, ["~> 2.2.2"])
+      s.add_runtime_dependency(%q<rb-fsevent>, ["~> 0.9.1"])
       s.add_runtime_dependency(%q<yui-compressor>, ["~> 0.9.6"])
       s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_development_dependency(%q<cucumber>, [">= 0"])
       s.add_development_dependency(%q<aruba>, [">= 0"])
-      s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
+      s.add_development_dependency(%q<bundler>, ["~> 1.2.3"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
-      s.add_development_dependency(%q<rcov>, [">= 0"])
     else
-      s.add_dependency(%q<thor>, ["~> 0.14.6"])
-      s.add_dependency(%q<guard>, ["~> 0.8.4"])
+      s.add_dependency(%q<thor>, ["~> 0.15.4"])
+      s.add_dependency(%q<guard>, ["~> 1.3.0"])
       s.add_dependency(%q<sprockets>, ["~> 2.0.2"])
       s.add_dependency(%q<rubyzip>, ["~> 0.9.4"])
-      s.add_dependency(%q<json>, ["~> 1.6.1"])
-      s.add_dependency(%q<sass>, ["~> 3.1.8"])
+      s.add_dependency(%q<json>, ["~> 1.8.0"])
+      s.add_dependency(%q<sass>, ["~> 3.2.0"])
       s.add_dependency(%q<sprockets-sass>, ["~> 0.3.0"])
-      s.add_dependency(%q<compass>, ["~> 0.11.5"])
+      s.add_dependency(%q<compass>, ["~> 0.12.2"])
       s.add_dependency(%q<rack>, ["~> 1.3.5"])
-      s.add_dependency(%q<guard-livereload>, ["~> 0.3.1"])
-      s.add_dependency(%q<less>, ["~> 2.0.7"])
-      s.add_dependency(%q<rb-fsevent>, ["~> 0.9.0"])
+      s.add_dependency(%q<guard-livereload>, ["~> 1.0.3"])
+      s.add_dependency(%q<less>, ["~> 2.2.2"])
+      s.add_dependency(%q<rb-fsevent>, ["~> 0.9.1"])
       s.add_dependency(%q<yui-compressor>, ["~> 0.9.6"])
       s.add_dependency(%q<rspec>, [">= 0"])
       s.add_dependency(%q<cucumber>, [">= 0"])
       s.add_dependency(%q<aruba>, [">= 0"])
-      s.add_dependency(%q<bundler>, ["~> 1.0.0"])
+      s.add_dependency(%q<bundler>, ["~> 1.2.3"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
-      s.add_dependency(%q<rcov>, [">= 0"])
     end
   else
-    s.add_dependency(%q<thor>, ["~> 0.14.6"])
-    s.add_dependency(%q<guard>, ["~> 0.8.4"])
+    s.add_dependency(%q<thor>, ["~> 0.15.4"])
+    s.add_dependency(%q<guard>, ["~> 1.3.0"])
     s.add_dependency(%q<sprockets>, ["~> 2.0.2"])
     s.add_dependency(%q<rubyzip>, ["~> 0.9.4"])
-    s.add_dependency(%q<json>, ["~> 1.6.1"])
-    s.add_dependency(%q<sass>, ["~> 3.1.8"])
+    s.add_dependency(%q<json>, ["~> 1.8.0"])
+    s.add_dependency(%q<sass>, ["~> 3.2.0"])
     s.add_dependency(%q<sprockets-sass>, ["~> 0.3.0"])
-    s.add_dependency(%q<compass>, ["~> 0.11.5"])
+    s.add_dependency(%q<compass>, ["~> 0.12.2"])
     s.add_dependency(%q<rack>, ["~> 1.3.5"])
-    s.add_dependency(%q<guard-livereload>, ["~> 0.3.1"])
-    s.add_dependency(%q<less>, ["~> 2.0.7"])
-    s.add_dependency(%q<rb-fsevent>, ["~> 0.9.0"])
+    s.add_dependency(%q<guard-livereload>, ["~> 1.0.3"])
+    s.add_dependency(%q<less>, ["~> 2.2.2"])
+    s.add_dependency(%q<rb-fsevent>, ["~> 0.9.1"])
     s.add_dependency(%q<yui-compressor>, ["~> 0.9.6"])
     s.add_dependency(%q<rspec>, [">= 0"])
     s.add_dependency(%q<cucumber>, [">= 0"])
     s.add_dependency(%q<aruba>, [">= 0"])
-    s.add_dependency(%q<bundler>, ["~> 1.0.0"])
+    s.add_dependency(%q<bundler>, ["~> 1.2.3"])
     s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
-    s.add_dependency(%q<rcov>, [">= 0"])
   end
 end
 
