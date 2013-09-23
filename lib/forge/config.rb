@@ -1,3 +1,5 @@
+require 'json'
+
 module Forge
   # Reads/Writes a configuration file in the user's home directory
   #
@@ -29,7 +31,7 @@ module Forge
 
     # Returns the path to the user's configuration file
     def config_file
-      @config_file ||= File.expand_path(File.join('~', '.forge', 'config.yml'))
+      @config_file ||= File.expand_path(File.join('~', '.forge', 'config.json'))
     end
 
     # Writes the configuration file

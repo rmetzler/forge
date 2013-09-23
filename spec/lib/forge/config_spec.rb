@@ -1,10 +1,10 @@
-
+require 'psych'
 require 'forge/config'
 
 describe Forge::Config do
 
   def config_file
-    File.expand_path(File.join('~', '.forge', 'config.yml'))
+    File.expand_path(File.join('~', '.forge', 'config.json'))
   end
 
   before(:each) do
@@ -37,7 +37,7 @@ describe Forge::Config do
 
   it "should write default configuration to yaml" do
     @config.write(:io => @buffer)
-    @buffer.string.should == "---\n:theme:\n  :author: !!null \n  :author_url: !!null \n:links: []\n"
+    @buffer.string.should == '{"theme":{"author":null,"author_url":null},"links":[]}'
   end
 
   describe :write do
@@ -46,14 +46,14 @@ describe Forge::Config do
       @config[:theme][:author_url] = "http://that-matt.com"
 
       @config.write(:io => @buffer)
-      @buffer.string.should == "---\n:theme:\n  :author: Matt Button\n  :author_url: http://that-matt.com\n:links: []\n"
+      @buffer.string.should == '{"theme":{"author":"Matt Button","author_url":"http://that-matt.com"},"links":[]}'
     end
   end
 
   describe :read do
     it "should call #write if the file does not exist" do
       File.should_receive(:exists?).with(config_file).and_return(false)
-      Psych.should_not_receive(:load_file)
+      File.should_not_receive(:open)
 
       @config.should_receive(:write)
       @config.read
@@ -61,15 +61,15 @@ describe Forge::Config do
 
     it "should not call #write if the config file exists" do
       File.should_receive(:exists?).with(config_file).and_return(true)
-      Psych.should_receive(:load_file).with(config_file)
+      File.should_receive(:open).with(config_file)
 
       @config.should_not_receive(:write)
       @config.read
     end
 
     it "should load config from yaml file" do
-      File.stub!(:exists?).and_return(true)
-      Psych.stub!(:load_file).and_return({:theme => {:author => 'Drew'}, :links => []})
+      File.stub(:exists?).and_return(true)
+      Psych.stub(:load_file).and_return({:theme => {:author => 'Drew'}, :links => []})
 
       @config.read
       @config[:links].should == []
