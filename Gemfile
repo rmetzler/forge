@@ -14,7 +14,7 @@ gem 'rack', '~> 1.5.2'
 gem "guard-livereload", "~> 1.4.0"
 gem "less", "~> 2.4.0"
 gem "rb-fsevent", "~> 0.9.3"
-gem "yui-compressor", "~> 0.11.0"
+gem "yui-compressor", "~> 0.12.0"
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
